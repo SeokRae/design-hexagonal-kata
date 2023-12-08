@@ -43,6 +43,10 @@ public class Router {
         return routerType;
     }
 
+    public RouterId getRouterId() {
+        return routerId;
+    }
+
     @Override
     public String toString(){
         return "Router{" +

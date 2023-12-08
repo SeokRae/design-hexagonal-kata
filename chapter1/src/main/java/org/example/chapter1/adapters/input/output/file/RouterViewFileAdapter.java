@@ -21,13 +21,13 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
     this.filePath = filePath;
   }
 
-  public static RouterViewFileAdapter getInstance() {
+  public static RouterViewFileAdapter getInstance(String filePath) {
     if (instance == null) {
       synchronized (RouterViewFileAdapter.class) {
         if (instance == null) {
           // 외부 주입?으로 수정할까?
-          String filePath = "routers.txt";
-          instance = new RouterViewFileAdapter(filePath);
+          String notBlankFilePath = filePath.isBlank() ? "routers.txt": filePath;
+          instance = new RouterViewFileAdapter(notBlankFilePath);
         }
       }
     }
@@ -56,8 +56,11 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
   }
 
 
-  private Router createRouterFrom(String line) {
+  Router createRouterFrom(String line) {
     String[] routerEntry = line.split(";");
+    if (routerEntry.length < 2) {
+      throw new IllegalArgumentException("Router data must contain ID and type, separated by a ';' character");
+    }
     var id = routerEntry[0];
     var type = routerEntry[1];
     return new Router(RouterType.valueOf(type), RouterId.of(id));

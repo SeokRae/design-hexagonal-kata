@@ -22,6 +22,6 @@ public class RouterViewCLIAdapter {
     }
 
     private void setAdapters(){
-        this.routerViewUseCase = new RouterViewInputPort(RouterViewFileAdapter.getInstance());
+        this.routerViewUseCase = new RouterViewInputPort(RouterViewFileAdapter.getInstance("routers.txt"));
     }
 }

@@ -1,4 +1,4 @@
-package org.example.chapter1.framework.adapters.input.output.file;
+package org.example.chapter1.framework.adapters.output.file;
 
 import org.example.chapter1.core.RouterProperties;
 import org.example.chapter1.domain.Router;

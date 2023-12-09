@@ -1,4 +1,4 @@
-package org.example.chapter1.adapters.input.output.file;
+package org.example.chapter1.framework.adapters.input.output.file;
 
 import org.example.chapter1.core.RouterProperties;
 import org.example.chapter1.domain.Router;
@@ -6,10 +6,6 @@ import org.example.chapter1.domain.RouterType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 

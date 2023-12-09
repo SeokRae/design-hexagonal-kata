@@ -1,4 +1,4 @@
-package org.example.chapter1.adapters.input.stdin;
+package org.example.chapter1.framework.adapters.input.stdin;
 
 import org.example.chapter1.application.usecases.RouterViewUseCase;
 import org.example.chapter1.domain.Router;

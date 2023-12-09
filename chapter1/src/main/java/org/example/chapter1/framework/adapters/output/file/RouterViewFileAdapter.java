@@ -4,8 +4,6 @@ import org.example.chapter1.application.ports.output.RouterViewOutputPort;
 import org.example.chapter1.domain.Router;
 import org.example.chapter1.domain.RouterId;
 import org.example.chapter1.domain.RouterType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +13,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class RouterViewFileAdapter implements RouterViewOutputPort {
-  private static final Logger log = LoggerFactory.getLogger(RouterViewFileAdapter.class);
   private static volatile RouterViewFileAdapter instance;
   private final String filePath;
 
@@ -49,9 +46,9 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
 
   private List<Router> readFileAsString() {
     Path path = Paths.get(filePath);
-    log.info("Reading routers from file: {}", path.toAbsolutePath());
-    if (!Files.exists(path)) {
-      throw new IllegalArgumentException("File is not found");
+    System.out.println("Reading routers from file: " + path.toAbsolutePath());
+    if(!Files.isReadable(path)) {
+      throw new IllegalArgumentException("File does not exist or cannot be read: " + path);
     }
 
     try (Stream<String> lines = Files.lines(path)) {

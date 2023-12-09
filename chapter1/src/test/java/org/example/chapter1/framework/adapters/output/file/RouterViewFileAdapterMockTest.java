@@ -2,55 +2,50 @@ package org.example.chapter1.framework.adapters.output.file;
 
 import org.example.chapter1.domain.Router;
 import org.example.chapter1.domain.RouterType;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.*;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class RouterViewFileAdapterMockTest {
 
-  @TempDir
-  private Path tempDir;
-
-  private RouterViewFileAdapter adapter;
+  private static final String filePath = "src/test/resources/test_routers.txt";
+  private static RouterViewFileAdapter adapter;
 
   @BeforeEach
-  public void setUp() throws Exception {
-    // 테스트용 파일 생성
-    Path testFilePath = tempDir.resolve("test_routers.txt");
-    Files.writeString(testFilePath, "router1;CORE\nrouter2;EDGE");
-
+  public void setUp() {
     // 인스턴스 생성
-    adapter = RouterViewFileAdapter.getInstance(testFilePath.toString());
+    adapter = RouterViewFileAdapter.getInstance(filePath);
   }
 
+  @Order(1)
   @Test
-  void testFetchRouters() throws Exception {
+  void testFetchRouters() {
     List<Router> routers = adapter.fetchRouters();
 
     // 결과 검증
     assertThat(routers).isNotNull()
-            .hasSize(2)
+            .hasSize(3)
             .extracting(Router::getRouterType)
-            .containsExactlyInAnyOrder(RouterType.CORE, RouterType.EDGE);
+            .containsExactlyInAnyOrder(RouterType.CORE, RouterType.EDGE, RouterType.EDGE);
   }
 
+  @Order(2)
   @Test
   void testCreateRouterFromValidData() {
-    String validLine = "router1;CORE";
+    String validLine = "ca23800e-9b5a-11eb-a8b3-0242ac130003;EDGE";
     Router router = adapter.createRouterFrom(validLine);
 
     assertThat(router).isNotNull();
-    assertThat(router.getRouterId().toString()).contains("router1");
-    assertThat(router.getRouterType()).isEqualTo(RouterType.CORE);
+    assertThat(router.getRouterId().toString()).contains("ca23800e-9b5a-11eb-a8b3-0242ac130003");
+    assertThat(router.getRouterType()).isEqualTo(RouterType.EDGE);
   }
 
+  @Order(3)
   @Test
   void testCreateRouterFromInvalidData() {
     String invalidLine = "invalidData";

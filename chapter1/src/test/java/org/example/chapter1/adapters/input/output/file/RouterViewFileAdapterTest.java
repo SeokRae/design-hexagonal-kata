@@ -1,31 +1,37 @@
 package org.example.chapter1.adapters.input.output.file;
 
+import org.example.chapter1.core.RouterProperties;
 import org.example.chapter1.domain.Router;
 import org.example.chapter1.domain.RouterType;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("파일 접근 Adapter 테스트")
 class RouterViewFileAdapterTest {
 
   private RouterViewFileAdapter adapter;
-  private final String testFilePath = "test_routers.txt";
-
+  private final String filePath = "src/test/resources/test_routers.txt";
   @BeforeEach
   public void setUp() {
     // 라우팅 정보를 가져오는 Adapter를 초기화
-    adapter = RouterViewFileAdapter.getInstance(testFilePath);
+    adapter = RouterViewFileAdapter.getInstance(filePath);
   }
 
   @Test
   void testSingletonInstance() {
     // 싱글턴 패턴으로 구현된 RouterViewFileAdapter의 인스턴스가 실제로 싱글턴인지 확인
-    RouterViewFileAdapter firstInstance = RouterViewFileAdapter.getInstance(testFilePath);
-    RouterViewFileAdapter secondInstance = RouterViewFileAdapter.getInstance(testFilePath);
+    RouterViewFileAdapter firstInstance = RouterViewFileAdapter.getInstance(filePath);
+    RouterViewFileAdapter secondInstance = RouterViewFileAdapter.getInstance(filePath);
     assertThat(firstInstance).isSameAs(secondInstance);
   }
 
@@ -68,5 +74,4 @@ class RouterViewFileAdapterTest {
             .isInstanceOf(RuntimeException.class)
             .hasMessageContaining("Router data must contain ID and type, separated by a ';' character");
   }
-
 }

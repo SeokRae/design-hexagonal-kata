@@ -4,16 +4,18 @@ import org.example.chapter1.application.ports.output.RouterViewOutputPort;
 import org.example.chapter1.domain.Router;
 import org.example.chapter1.domain.RouterId;
 import org.example.chapter1.domain.RouterType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class RouterViewFileAdapter implements RouterViewOutputPort {
-
+  private static final Logger log = LoggerFactory.getLogger(RouterViewFileAdapter.class);
   private static volatile RouterViewFileAdapter instance;
   private final String filePath;
 
@@ -26,7 +28,7 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
       synchronized (RouterViewFileAdapter.class) {
         if (instance == null) {
           // 외부 주입?으로 수정할까?
-          String notBlankFilePath = filePath.isBlank() ? "routers.txt": filePath;
+          String notBlankFilePath = filePath.isBlank() ? "routers.txt" : filePath;
           instance = new RouterViewFileAdapter(notBlankFilePath);
         }
       }
@@ -46,11 +48,17 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
    */
 
   private List<Router> readFileAsString() {
-    try (Stream<String> lines = Files.lines(Paths.get(getClass().getClassLoader().getResource(filePath).toURI()))) {
+    Path path = Paths.get(filePath);
+    log.info("Reading routers from file: {}", path.toAbsolutePath());
+    if (!Files.exists(path)) {
+      throw new IllegalArgumentException("File is not found");
+    }
+
+    try (Stream<String> lines = Files.lines(path)) {
       return lines
               .map(this::createRouterFrom)
               .toList();
-    } catch (IOException | URISyntaxException e) {
+    } catch (IOException e) {
       throw new RuntimeException("Failed to read routers from file", e);
     }
   }

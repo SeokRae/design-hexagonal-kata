@@ -1,7 +1,7 @@
-package com.example.chapter2.adapters.input.stdin;
+package com.example.chapter2.framework.adapters.input.stdin;
 
 
-import com.example.chapter2.adapters.output.file.RouterViewFileAdapter;
+import com.example.chapter2.framework.adapters.output.file.RouterViewFileAdapter;
 import com.example.chapter2.application.ports.input.RouterViewInputPort;
 import com.example.chapter2.application.usecases.RouterViewUseCase;
 import com.example.chapter2.domain.entity.Router;

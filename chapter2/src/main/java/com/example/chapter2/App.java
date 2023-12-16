@@ -1,7 +1,7 @@
 package com.example.chapter2;
 
 
-import com.example.chapter2.adapters.input.stdin.RouterViewCLIAdapter;
+import com.example.chapter2.framework.adapters.input.stdin.RouterViewCLIAdapter;
 
 public class App {
 

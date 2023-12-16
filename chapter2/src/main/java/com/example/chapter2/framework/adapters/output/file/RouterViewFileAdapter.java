@@ -1,4 +1,4 @@
-package com.example.chapter2.adapters.output.file;
+package com.example.chapter2.framework.adapters.output.file;
 
 import com.example.chapter2.application.ports.output.RouterViewOutputPort;
 import com.example.chapter2.domain.entity.Router;

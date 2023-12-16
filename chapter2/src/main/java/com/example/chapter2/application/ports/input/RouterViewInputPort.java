@@ -1,16 +1,16 @@
 package com.example.chapter2.application.ports.input;
 
-import dev.davivieira.application.ports.output.RouterViewOutputPort;
-import dev.davivieira.application.usecases.RouterViewUseCase;
-import dev.davivieira.domain.entity.Router;
-import dev.davivieira.domain.service.RouterSearch;
+import com.example.chapter2.application.ports.output.RouterViewOutputPort;
+import com.example.chapter2.application.usecases.RouterViewUseCase;
+import com.example.chapter2.domain.entity.Router;
+import com.example.chapter2.domain.service.RouterSearch;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 public class RouterViewInputPort implements RouterViewUseCase {
 
-    private RouterViewOutputPort routerListOutputPort;
+    private final RouterViewOutputPort routerListOutputPort;
 
     public RouterViewInputPort(RouterViewOutputPort routerViewOutputPort) {
         this.routerListOutputPort = routerViewOutputPort;

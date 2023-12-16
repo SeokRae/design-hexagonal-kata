@@ -1,9 +1,9 @@
 package com.example.chapter2.domain.policy;
 
-import dev.davivieira.domain.entity.Event;
-import dev.davivieira.domain.vo.Activity;
-import dev.davivieira.domain.vo.EventId;
-import dev.davivieira.domain.vo.Protocol;
+import com.example.chapter2.domain.entity.Event;
+import com.example.chapter2.domain.vo.Activity;
+import com.example.chapter2.domain.vo.EventId;
+import com.example.chapter2.domain.vo.Protocol;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;

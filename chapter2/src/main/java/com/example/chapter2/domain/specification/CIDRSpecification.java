@@ -1,6 +1,7 @@
 package com.example.chapter2.domain.specification;
 
-import dev.davivieira.domain.specification.shared.AbstractSpecification;
+
+import com.example.chapter2.domain.specification.shared.AbstractSpecification;
 
 public class CIDRSpecification extends AbstractSpecification<Integer> {
 

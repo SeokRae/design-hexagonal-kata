@@ -1,11 +1,11 @@
 package com.example.chapter2.domain.service;
 
-import dev.davivieira.domain.entity.Router;
-import dev.davivieira.domain.specification.CIDRSpecification;
-import dev.davivieira.domain.specification.NetworkAmountSpecification;
-import dev.davivieira.domain.specification.NetworkAvailabilitySpecification;
-import dev.davivieira.domain.specification.RouterTypeSpecification;
-import dev.davivieira.domain.vo.Network;
+import com.example.chapter2.domain.entity.Router;
+import com.example.chapter2.domain.specification.CIDRSpecification;
+import com.example.chapter2.domain.specification.NetworkAmountSpecification;
+import com.example.chapter2.domain.specification.NetworkAvailabilitySpecification;
+import com.example.chapter2.domain.specification.RouterTypeSpecification;
+import com.example.chapter2.domain.vo.Network;
 
 public class NetworkOperation {
 

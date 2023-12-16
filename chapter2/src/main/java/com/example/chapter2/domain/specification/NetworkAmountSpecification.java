@@ -1,7 +1,8 @@
 package com.example.chapter2.domain.specification;
 
-import dev.davivieira.domain.entity.Router;
-import dev.davivieira.domain.specification.shared.AbstractSpecification;
+
+import com.example.chapter2.domain.entity.Router;
+import com.example.chapter2.domain.specification.shared.AbstractSpecification;
 
 public class NetworkAmountSpecification extends AbstractSpecification<Router> {
 

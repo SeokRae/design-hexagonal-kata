@@ -1,9 +1,9 @@
 package com.example.chapter2.adapters.output.file;
 
-import dev.davivieira.application.ports.output.RouterViewOutputPort;
-import dev.davivieira.domain.entity.Router;
-import dev.davivieira.domain.vo.RouterId;
-import dev.davivieira.domain.vo.RouterType;
+import com.example.chapter2.application.ports.output.RouterViewOutputPort;
+import com.example.chapter2.domain.entity.Router;
+import com.example.chapter2.domain.vo.RouterId;
+import com.example.chapter2.domain.vo.RouterType;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -26,14 +26,14 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
                 new InputStreamReader(
                         RouterViewFileAdapter.class.getClassLoader().
                                 getResourceAsStream("routers.txt"))).lines()) {
-            stream.forEach(line ->{
+            stream.forEach(line -> {
                 String[] routerEntry = line.split(";");
                 var id = routerEntry[0];
                 var type = routerEntry[1];
-                Router router = new Router(RouterType.valueOf(type),RouterId.withId(id));
+                Router router = new Router(RouterType.valueOf(type), RouterId.withId(id));
                 routers.add(router);
             });
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return routers;

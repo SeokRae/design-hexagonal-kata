@@ -1,6 +1,7 @@
 package com.example.chapter2.domain.policy;
 
-import dev.davivieira.domain.entity.Event;
+
+import com.example.chapter2.domain.entity.Event;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;

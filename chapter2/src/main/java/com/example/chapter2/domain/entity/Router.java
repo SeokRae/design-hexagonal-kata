@@ -1,10 +1,17 @@
 package com.example.chapter2.domain.entity;
 
-import dev.davivieira.domain.vo.*;
+
+import com.example.chapter2.domain.vo.IP;
+import com.example.chapter2.domain.vo.Network;
+import com.example.chapter2.domain.vo.RouterId;
+import com.example.chapter2.domain.vo.RouterType;
 
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * The Router class represents a network router.
+ */
 public class Router {
 
     private final RouterType routerType;

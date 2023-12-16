@@ -36,7 +36,7 @@ public class Event implements Comparable<Event> {
      * 지정된 구문 분석 정책에 따라 구문 분석되지 않은 이벤트를 구문 분석합니다.
      *
      * @param unparsedEvent the unparsed event to be parsed
-     * @param policy the parse policy to be used (REGEX or SPLIT)
+     * @param policy        the parse policy to be used (REGEX or SPLIT)
      * @return the parsed Event
      * @throws IllegalArgumentException if an invalid parse policy is provided
      */

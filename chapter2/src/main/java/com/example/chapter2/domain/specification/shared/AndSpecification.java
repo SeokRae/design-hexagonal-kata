@@ -2,8 +2,8 @@ package com.example.chapter2.domain.specification.shared;
 
 public class AndSpecification<T> extends AbstractSpecification<T> {
 
-    private Specification<T> spec1;
-    private Specification<T> spec2;
+    private final Specification<T> spec1;
+    private final Specification<T> spec2;
 
     public AndSpecification(final Specification<T> spec1, final Specification<T> spec2) {
         this.spec1 = spec1;

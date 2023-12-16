@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The Switch class represents a network switch.
+ */
 public class Switch {
 
     private final SwitchType switchType;

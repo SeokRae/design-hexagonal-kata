@@ -7,12 +7,12 @@ public class EventId {
 
     private final String id;
 
-    private EventId(String id){
+    private EventId(String id) {
         this.id = id;
     }
 
     // Factory Method - use this instead of constructor
-    public static EventId of(String id){
+    public static EventId of(String id) {
         return new EventId(id);
     }
 

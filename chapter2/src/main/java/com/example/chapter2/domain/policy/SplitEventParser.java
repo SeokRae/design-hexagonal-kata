@@ -13,7 +13,7 @@ import java.util.Arrays;
  * SplitEventParser 클래스는 분할 전략을 사용해 이벤트를 구문 분석하는 EventParser 인터페이스를 구현합니다
  * 이 클래스는 이벤트 문자열을 공백 구분자를 사용하여 필드로 분할하고 구문 분석된 필드에서 Event 객체를 생성합니다.
  */
-public class SplitEventParser implements EventParser{
+public class SplitEventParser implements EventParser {
 
     // extract constants for readability
     private static final int EVENT_TIMESTAMP_INDEX = 0;

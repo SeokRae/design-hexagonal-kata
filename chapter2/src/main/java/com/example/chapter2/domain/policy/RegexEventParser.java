@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexEventParser implements EventParser{
+public class RegexEventParser implements EventParser {
 
     @Override
     public Event parseEvent(String event) {

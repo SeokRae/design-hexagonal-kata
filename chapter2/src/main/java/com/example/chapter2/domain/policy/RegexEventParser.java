@@ -24,6 +24,10 @@ public class RegexEventParser implements EventParser {
             fields.add(matcher.group(0));
         }
 
+        if (fields.size() < 6) {
+            throw new IllegalArgumentException("Event string not correctly formatted for parsing");
+        }
+
         var timestamp = LocalDateTime.parse(matcher.group(0), formatter).atOffset(ZoneOffset.UTC);
         var id = EventId.of(matcher.group(1));
         var protocol = Protocol.valueOf(matcher.group(2));

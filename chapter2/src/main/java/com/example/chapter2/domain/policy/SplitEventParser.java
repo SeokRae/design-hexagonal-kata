@@ -32,6 +32,9 @@ public class SplitEventParser implements EventParser {
     public Event parseEvent(String event) {
         var fields = Arrays.asList(event.split(" "));
 
+        if(fields.size() < 6) {
+            throw new IllegalArgumentException("Event string not correctly formatted for parsing");
+        }
         var timestamp = LocalDateTime.parse(fields.get(EVENT_TIMESTAMP_INDEX), formatter)
                 .atOffset(ZoneOffset.UTC);
         var id = EventId.of(fields.get(EVENT_ID_INDEX));

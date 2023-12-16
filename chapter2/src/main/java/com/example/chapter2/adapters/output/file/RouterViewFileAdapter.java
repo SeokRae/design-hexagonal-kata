@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 public class RouterViewFileAdapter implements RouterViewOutputPort {
 
+    // Singleton
     private static RouterViewFileAdapter instance;
 
     @Override

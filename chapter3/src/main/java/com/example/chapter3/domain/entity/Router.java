@@ -1,27 +1,28 @@
-package com.example.chapter2.domain.entity;
+package com.example.chapter3.domain.entity;
 
-
-import com.example.chapter2.domain.vo.IP;
-import com.example.chapter2.domain.vo.Network;
-import com.example.chapter2.domain.vo.RouterId;
-import com.example.chapter2.domain.vo.RouterType;
+import com.example.chapter3.domain.vo.IP;
+import com.example.chapter3.domain.vo.Network;
+import com.example.chapter3.domain.vo.RouterId;
+import com.example.chapter3.domain.vo.RouterType;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-/**
- * The Router class represents a network router.
- */
 public class Router {
 
     private final RouterType routerType;
-    private final RouterId routerid;
-    // 정의되지 않은 코드로 현재는 사용 불가
+    private final RouterId routerId;
     private Switch networkSwitch;
 
-    public Router(RouterType routerType, RouterId routerid) {
+    public Router(RouterType routerType, RouterId routerId) {
         this.routerType = routerType;
-        this.routerid = routerid;
+        this.routerId = routerId;
+    }
+
+    public Router(RouterType routerType, RouterId routerId, Switch networkSwitch) {
+        this.routerType = routerType;
+        this.routerId = routerId;
+        this.networkSwitch = networkSwitch;
     }
 
     public static Predicate<Router> filterRouterByType(RouterType routerType) {
@@ -39,7 +40,7 @@ public class Router {
     }
 
     public void addNetworkToSwitch(Network network) {
-        this.networkSwitch = networkSwitch.addNetwork(network);
+        this.networkSwitch = networkSwitch.addNetwork(network, this);
     }
 
     public Network createNetwork(IP address, String name, int cidr) {
@@ -54,11 +55,16 @@ public class Router {
         return routerType;
     }
 
+    public RouterId getRouterId() {
+        return routerId;
+    }
+
     @Override
     public String toString() {
         return "Router{" +
-                "type=" + routerType +
-                ", id=" + routerid +
+                "routerType=" + routerType +
+                ", routerId=" + routerId +
+                ", networkSwitch=" + networkSwitch +
                 '}';
     }
 }

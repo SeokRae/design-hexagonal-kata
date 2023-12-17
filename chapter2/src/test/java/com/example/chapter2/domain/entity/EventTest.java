@@ -8,12 +8,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeParseException;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class EventTest {
     @DisplayName("값 검증 테스트")
@@ -51,33 +50,35 @@ class EventTest {
         Event event1 = new Event(now, EventId.of("event1"), Protocol.IPV4, new Activity("sourceHostValue", "destinationHostValue"));
         Event event2 = new Event(now.plusHours(1), EventId.of("event2"), Protocol.IPV4, new Activity("sourceHostValue", "destinationHostValue"));
 
-        assertThat(event1.compareTo(event2)).isLessThan(0);
+        // event1이 event2보다 이전임을 확인
+        assertThat(event1.compareTo(event2))
+                .isLessThan(0);
     }
 
     @DisplayName("동일성 및 동등성 검증 테스트")
     @Test
     void testEqualsAndHashCode() {
-    OffsetDateTime now = OffsetDateTime.now();
-    EventId id = EventId.of("event1");
-    Protocol protocol = Protocol.IPV4;
-    Activity activity = new Activity("sourceHostValue", "destinationHostValue");
+        OffsetDateTime now = OffsetDateTime.now();
+        EventId id = EventId.of("event1");
+        Protocol protocol = Protocol.IPV4;
+        Activity activity = new Activity("sourceHostValue", "destinationHostValue");
 
-    Event event1 = new Event(now, id, protocol, activity);
-    Event event2 = new Event(now, id, protocol, activity);
+        Event event1 = new Event(now, id, protocol, activity);
+        Event event2 = new Event(now, id, protocol, activity);
 
-    // 두 이벤트는 같은 값을 가지므로 동등
-    // 'equals' 메서드를 통해 event1과 event2의 내용이 같은지 확인
-    assertThat(event1).isEqualTo(event2);
-    // 일관성 검증: 동등한 객체는 동일한 해시코드를 가져야함을 확인
-    // 'hashCode' 메서드를 통해 event1과 event2의 해시코드가 같은지 확인
-    assertThat(event1.hashCode()).isEqualTo(event2.hashCode());
+        // 두 이벤트는 같은 값을 가지므로 동등
+        // 'equals' 메서드를 통해 event1과 event2의 내용이 같은지 확인
+        assertThat(event1).isEqualTo(event2);
+        // 일관성 검증: 동등한 객체는 동일한 해시코드를 가져야함을 확인
+        // 'hashCode' 메서드를 통해 event1과 event2의 해시코드가 같은지 확인
+        assertThat(event1.hashCode()).isEqualTo(event2.hashCode());
 
-    Event event3 = new Event(now.plusHours(1), id, protocol, activity);
+        Event event3 = new Event(now.plusHours(1), id, protocol, activity);
 
-    // 두 이벤트는 다른 값을 가지므로 동등하지 않음
-    // 동등성 검증: 'equals' 메서드를 통해 event1과 event3의 내용이 다른지 확인
-    assertThat(event1).isNotEqualTo(event3);
-    // 동등성과 일관성 검증: 동등하지 않은 객체는 다른 해시코드를 가져야함을 확인
-    assertThat(event1.hashCode()).isNotEqualTo(event3.hashCode());
+        // 두 이벤트는 다른 값을 가지므로 동등하지 않음
+        // 동등성 검증: 'equals' 메서드를 통해 event1과 event3의 내용이 다른지 확인
+        assertThat(event1).isNotEqualTo(event3);
+        // 동등성과 일관성 검증: 동등하지 않은 객체는 다른 해시코드를 가져야함을 확인
+        assertThat(event1.hashCode()).isNotEqualTo(event3.hashCode());
     }
 }

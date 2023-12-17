@@ -27,6 +27,7 @@ public class Switch {
         this.address = address;
     }
 
+    // 메서드의 의미와는 다르게 하나 추가만 가능
     public Switch addNetwork(Network network) {
         var networks = new ArrayList<>(Collections.singletonList(network));
         networks.add(network);

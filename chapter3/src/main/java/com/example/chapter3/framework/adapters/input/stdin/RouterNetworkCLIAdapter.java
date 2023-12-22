@@ -9,7 +9,7 @@ import com.example.chapter3.framework.adapters.output.file.RouterNetworkFileAdap
 
 public class RouterNetworkCLIAdapter {
 
-    RouterNetworkUseCase routerNetworkUseCase;
+    private RouterNetworkUseCase routerNetworkUseCase;
 
     public RouterNetworkCLIAdapter() {
         setAdapters();

@@ -25,14 +25,11 @@ public class Event implements Comparable<Event> {
     }
 
     public static Event parsedEvent(String unparsedEvent, ParsePolicyType policy) {
-        switch (policy) {
-            case REGEX:
-                return new RegexEventParser().parseEvent(unparsedEvent);
-            case SPLIT:
-                return new SplitEventParser().parseEvent(unparsedEvent);
-            default:
-                throw new IllegalArgumentException("");
-        }
+        return switch (policy) {
+            case REGEX -> new RegexEventParser().parseEvent(unparsedEvent);
+            case SPLIT -> new SplitEventParser().parseEvent(unparsedEvent);
+            default -> throw new IllegalArgumentException("");
+        };
     }
 
     @Override
@@ -41,20 +38,27 @@ public class Event implements Comparable<Event> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Event event) {
-            return (event.timestamp.equals(this.timestamp)
-                    && event.id.equals(this.id)
-                    && event.protocol.equals(this.protocol)
-                    && event.activity.equals(this.activity)
-            );
-        } else {
-            return false;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event event)) return false;
+        return Objects.equals(timestamp, event.timestamp)
+                && Objects.equals(id, event.id)
+                && protocol == event.protocol
+                && Objects.equals(activity, event.activity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timestamp, id, protocol, activity) + 31;
+        return Objects.hash(timestamp, id, protocol, activity);
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "timestamp=" + timestamp +
+                ", id=" + id +
+                ", protocol=" + protocol +
+                ", activity=" + activity +
+                '}';
     }
 }

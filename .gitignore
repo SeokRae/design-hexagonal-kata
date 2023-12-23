@@ -2,3 +2,4 @@
 /chapter2/.gradle/
 /chapter3/.gradle/
 /chapter4/.gradle/
+!/chapter4/.gradle/
